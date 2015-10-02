@@ -3,11 +3,11 @@
 (defn product [coll]
   (if (empty? coll)
     1
-    (* (first coll) 
+    (* (first coll)
        (product (rest coll)))))
 
 (defn singleton? [coll]
-  (cond 
+  (cond
    (empty? coll) false
    (empty? (rest coll)) true
    :else false))
@@ -52,7 +52,7 @@
         rest-of-seq (rest a-seq)]
     (cond
      (empty? a-seq)  '()
-     (pred? first-of-seq) (cons first-of-seq 
+     (pred? first-of-seq) (cons first-of-seq
                                 (my-take-while pred? rest-of-seq))
      :else '())))
 
@@ -74,7 +74,7 @@
 (defn my-map [f seq-1 seq-2]
   (cond
    (or (empty? seq-1) (empty? seq-2)) '()
-   :else (cons (f (first seq-1) (first seq-2)) 
+   :else (cons (f (first seq-1) (first seq-2))
                (my-map f (rest seq-1) (rest seq-2)))))
 
 (defn power [n k]
@@ -94,7 +94,7 @@
     '()
     (cons what-to-repeat (my-repeat (dec how-many-times) what-to-repeat))))
 
-(defn my-range [up-to]  
+(defn my-range [up-to]
   (if (zero? up-to)
     '()
     (cons (dec up-to) (my-range (dec up-to)))))
@@ -113,7 +113,7 @@
 (defn my-frequencies-helper [freqs a-seq]
   (if (empty? a-seq)
     freqs
-    (my-frequencies-helper (assoc freqs (first a-seq) 
+    (my-frequencies-helper (assoc freqs (first a-seq)
                                   (inc (or (freqs (first a-seq)) 0))) (rest a-seq))))
 
 (defn my-frequencies [a-seq]
@@ -128,7 +128,7 @@
 (defn my-take [n coll]
   (if (or (empty? coll) (>= 0 n))
     '()
-    (cons (first coll) (my-take (- n 1) (rest coll))))) 
+    (cons (first coll) (my-take (- n 1) (rest coll)))))
 
 (defn my-drop [n coll]
   (if (zero? n)
@@ -163,4 +163,3 @@
 
 (defn powerset [a-set]
   [:-])
-
