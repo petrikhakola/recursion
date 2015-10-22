@@ -155,8 +155,16 @@
    :else (let [[first-half last-half] (halve a-seq)]
            (seq-merge (merge-sort first-half) (merge-sort last-half)))))
 
+
+; A monotonic helper
+(defn monotonic? [x] (or (apply < x)(apply > x)))
+
 (defn split-into-monotonics [a-seq]
-  [:-])
+  (let [longest-mono (last (take-while monotonic? (rest (inits a-seq))))
+        rest-of-seq (drop (count longest-mono) a-seq) ]
+    (cond
+     (empty? a-seq) '()
+     :else (cons longest-mono (split-into-monotonics rest-of-seq)))))
 
 (defn permutations [a-set]
   [:-])
